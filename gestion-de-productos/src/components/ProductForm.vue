@@ -1,53 +1,78 @@
 <script setup>
 import { ref } from 'vue';
-const product = ref({
-    'id': 0,
+import BaseInput from './BaseInput.vue';
+import BaseButton from './BaseButton.vue';
+const formulario = ref({
     'nombre': "",
-    'precio': 0,
-    'stock': 0,
+    'precio': null,
+    'stock': null,
     'categoria': ""
 });
 
-const agregarDatos = () => {
-    console.log(product)
+const emit = defineEmits(['on-agregar']);
+
+function manejarEnvio() {
+    if (formulario.value.nombre === '' || formulario.value.categoria === '' || formulario.value.precio <= 0 || formulario.value.stock <= 0) {
+        alert("Complete los campos correctamente.");
+        return;
+    }
+    emit('on-agregar', { ...formulario.value });
+
+    formulario.value = {
+        'nombre': "",
+        'precio': null,
+        'stock': null,
+        'categoria': ""
+    };
 }
 </script>
 
 <template>
-    <div class="form">
+    <form @submit.prevent="manejarEnvio" class="form-prod">
+        <h3>Nuevo Producto</h3>
         <label for="nombre">Nombre:</label>
-        <input v-model="product.nombre" type="text">
+        <BaseInput v-model="formulario.nombre"/>
         <label for="precio">Precio:</label>
-        <input v-model="product.precio" type="numbre">
+        <BaseInput tipo="number" v-model.number="formulario.precio"/>
         <label for="stock">Stock:</label>
-        <input v-model="product.stock" type="numbre">
-        <label for="categoria">Categoria:</label>
-        <input v-model="product.categoria" type="text">
-        <button @click="agregarDatos">Agregar</button>
-    </div>
+        <BaseInput tipo="number" v-model.number="formulario.stock"/>
+        <div class="base-input">
+            <label>Categoría</label>
+            <select v-model="formulario.categoria">
+                <option value="" disabled>Seleccione...</option>
+                <option value="Electrónica">Electrónica</option>
+                <option value="Hogar">Hogar</option>
+                <option value="Ropa">Ropa</option>
+                <option value="Deportes">Deportes</option>
+                <option value="Arte">Arte</option>
+            </select>
+        </div>
+
+        <BaseButton tipo="submit" >Guardar Producto</BaseButton>
+    </form>
 </template>
 
-<style>
-.form {
-    width: 100%;
-    max-width: 400px;
+<style scoped>
+.form-prod{
+    align-items: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 100px;
-    margin: auto;
-    background-color: black;
-    color: aqua;
+    margin-left: auto;
+    margin-right: auto;
+    height: 300px;
+}
+.base-input{
+    display: flex;
+    flex-direction: column;
 }
 
-input {
-    width: 320px;
-    align-items: left;
-    box-sizing: border-box;
-}
-
-button {
-    color: black;
-    margin-top: 50px;
+button{
+    margin-top: 10px;
+    background: #4d68ff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
 }
 </style>
