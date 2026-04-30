@@ -12,9 +12,12 @@
 
 <style scoped>
 input{
-    margin-left: 50px;
-    margin-right: 50px;
-    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+    text-align: center;
     border-radius: 30px;
+    color: white;
+    background-color: rgb(107, 6, 107);
 }
 </style>

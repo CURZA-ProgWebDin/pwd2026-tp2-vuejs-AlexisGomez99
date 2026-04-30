@@ -28,14 +28,15 @@ function manejarEnvio() {
 </script>
 
 <template>
+    <h1>Nuevo Producto</h1>
     <form @submit.prevent="manejarEnvio" class="form-prod">
-        <h3>Nuevo Producto</h3>
+
         <label for="nombre">Nombre:</label>
-        <BaseInput v-model="formulario.nombre"/>
+        <BaseInput v-model="formulario.nombre" />
         <label for="precio">Precio:</label>
-        <BaseInput tipo="number" v-model.number="formulario.precio"/>
+        <BaseInput tipo="number" v-model.number="formulario.precio" />
         <label for="stock">Stock:</label>
-        <BaseInput tipo="number" v-model.number="formulario.stock"/>
+        <BaseInput tipo="number" v-model.number="formulario.stock" />
         <div class="base-input">
             <label>Categoría</label>
             <select v-model="formulario.categoria">
@@ -47,28 +48,46 @@ function manejarEnvio() {
                 <option value="Arte">Arte</option>
             </select>
         </div>
-
-        <BaseButton tipo="submit" >Guardar Producto</BaseButton>
+        <BaseButton tipo="submit">Guardar Producto</BaseButton>
     </form>
 </template>
 
 <style scoped>
-.form-prod{
+.form-prod {
     align-items: center;
     display: flex;
     flex-direction: column;
+    margin-top: 5%;
     margin-left: auto;
     margin-right: auto;
-    height: 300px;
-}
-.base-input{
-    display: flex;
-    flex-direction: column;
+    height: 100px;
 }
 
-button{
+.base-input {
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    text-align: center;
+}
+
+label {
     margin-top: 10px;
-    background: #4d68ff;
+}
+
+select {
+    margin-top: 5px;
+    appearance: none;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+button {
+    margin-top: 10px;
+    background: #7a0791;
     color: white;
     border: none;
     padding: 5px 10px;

@@ -18,9 +18,9 @@ defineEmits(['on-borrar'])
 
 <style scoped>
 td{
-    border: 1px solid black;
+    border: 1px solid rgb(156, 10, 156);
     padding: 10px;
-    text-align: left;
+    text-align: center;
 }
 .btn-del {
     background: #ff4d4d;

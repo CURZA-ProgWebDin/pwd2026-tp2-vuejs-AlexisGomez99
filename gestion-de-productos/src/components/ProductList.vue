@@ -14,7 +14,7 @@ const productosFiltrados = computed(() => {
 
 <template>
     <div class="list-container">
-        <label> Filtrar por:</label>
+        <label>Filtrar por: </label>
         <select v-model="filtro">
             <option value="Todos">Todos</option>
             <option value="Ropa">Ropa</option>
@@ -46,17 +46,36 @@ const productosFiltrados = computed(() => {
     <p v-else>No hay productos cargados.</p>
 </template>
 
-<style>
+<style scoped>
+.list-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+select {
+    appearance: none;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 400px;
+    padding: 7px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
 table {
+    margin-top: 30px;
     border: 3px solid;
-    border-color: black;
+    border-color: rgb(156, 10, 156);
     border-collapse: collapse;
     width: 100%;
 }
 
 th {
-    border: 1px solid black;
-    padding: 10px;
+    border: 1px solid rgb(156, 10, 156);
+    padding: 50px;
     text-align: left;
 }
 </style>

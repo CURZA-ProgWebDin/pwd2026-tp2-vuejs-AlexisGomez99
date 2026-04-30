@@ -5,11 +5,11 @@ import ProductList from './components/ProductList.vue';
 
 const productos = ref([])
 const id = ref(1)
-const cantidad_prod = computed(() =>{
-  return productos.value.reduce((total,p) => total + p.stock,0);
+const cantidad_prod = computed(() => {
+  return productos.value.reduce((total, p) => total + p.stock, 0);
 });
-const valor_inventario = computed(() =>{
-  return productos.value.reduce((total,p) => total + (p.stock * p.precio),0);
+const valor_inventario = computed(() => {
+  return productos.value.reduce((total, p) => total + (p.stock * p.precio), 0);
 });
 
 function agregarProducto(nuevo) {
@@ -24,31 +24,69 @@ const eliminarProducto = (id) => {
 </script>
 
 <template>
-  <div class="app">
-    <p>Cantidad de productos {{ cantidad_prod }}</p>
-    <p>Valor del inventario {{ valor_inventario }}</p>
-    <ProductForm @on-agregar="agregarProducto" />
-    <ProductList :productos="productos" @on-eliminar="eliminarProducto" />
+  <div class="container">
+    <div class="panel-carga">
+      <ProductForm @on-agregar="agregarProducto" />
+      <div class="resumen">
+        <p>Cantidad de productos {{ cantidad_prod }}</p>
+        <p>Valor del inventario {{ valor_inventario }}</p>
+      </div>
+    </div>
+    <div class="panel-productos">
+      <ProductList :productos="productos" @on-eliminar="eliminarProducto" />
+    </div>
   </div>
+
 
 </template>
 <style>
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
-  background-color: rgb(61, 6, 61); 
+  background-color: rgb(27, 1, 27);
 }
-.app {
+
+.container {
+  display: flex;
+  color: white;
+}
+
+.panel-productos {
+  border: solid rgb(156, 10, 156);
   background-color: rgb(49, 2, 49);
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: white;
-  margin-left: 20%;
-  margin-right: 20%;
-  height: 100vh;
+  margin-top: 5%;
+  margin-left: 7%;
+  width: 55%;
+  height: 80vh;
   font-family: sans-serif;
+}
+
+.panel-carga {
+  border: solid rgb(156, 10, 156);
+  background-color: rgb(49, 2, 49);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5%;
+  margin-left: 70px;
+  width: 30%;
+  height: 80vh;
+  font-family: sans-serif;
+}
+.resumen{
+  border: solid rgb(156, 10, 156);
+  margin-top: 50%;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+}
+p{
+  margin-top: 12%;
 }
 </style>

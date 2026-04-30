@@ -9,3 +9,4 @@ defineProps({tipo:{type:String}})
         </slot>
     </button>
 </template>
+
