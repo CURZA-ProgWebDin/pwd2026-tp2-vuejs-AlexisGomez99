@@ -60,6 +60,7 @@ function manejarEnvio() {
     margin-top: 5%;
     margin-left: auto;
     margin-right: auto;
+    padding-top: 50px;
     height: 100px;
 }
 
@@ -77,21 +78,13 @@ label {
 select {
     margin-top: 5px;
     appearance: none;
+    text-align: center;
     background-color: #f0f0f0;
     border: 1px solid #ccc;
     border-radius: 8px;
-    padding: 10px;
+    padding: 5px 60px;
     font-size: 13px;
     cursor: pointer;
 }
 
-button {
-    margin-top: 10px;
-    background: #7a0791;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-}
 </style>

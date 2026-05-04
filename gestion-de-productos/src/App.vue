@@ -29,7 +29,7 @@ const eliminarProducto = (id) => {
       <ProductForm @on-agregar="agregarProducto" />
       <div class="resumen">
         <p>Cantidad de productos {{ cantidad_prod }}</p>
-        <p>Valor del inventario {{ valor_inventario }}</p>
+        <p>Valor del inventario ${{ valor_inventario }}</p>
       </div>
     </div>
     <div class="panel-productos">
@@ -76,17 +76,18 @@ body {
   margin-top: 5%;
   margin-left: 70px;
   width: 30%;
-  height: 80vh;
   font-family: sans-serif;
 }
 .resumen{
-  border: solid rgb(156, 10, 156);
-  margin-top: 50%;
+  margin-top: auto;
+  border-top: solid rgb(156, 10, 156);
   text-align: center;
-  height: 100%;
   width: 100%;
+  box-sizing: border-box;
+  padding: 20px 0;
 }
 p{
-  margin-top: 12%;
+  margin-top: auto;
+  padding-top: 5%;
 }
 </style>

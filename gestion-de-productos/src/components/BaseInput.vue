@@ -16,6 +16,7 @@ input{
     margin-right: auto;
     width: 300px;
     text-align: center;
+    padding: 5px 10px;
     border-radius: 30px;
     color: white;
     background-color: rgb(107, 6, 107);
