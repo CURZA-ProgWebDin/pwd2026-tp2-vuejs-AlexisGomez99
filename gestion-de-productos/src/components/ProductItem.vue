@@ -1,19 +1,22 @@
 <script setup>
-defineProps(['prod'])
-defineEmits(['on-borrar'])
+const props = defineProps(['prod']);
+const emit = defineEmits(['on-borrar']);
+
+function eliminar(){
+    console.log("se elimino el producto con id:" + props.prod.id);
+    emit('on-borrar', props.prod.id);
+}
 </script>
 
 <template>
     <tr>
-        <td>{{ prod.id }}</td>
-        <td>{{ prod.nombre }}</td>
-        <td>{{ prod.categoria }}</td>
-        <td>{{ prod.precio }}</td>
-        <td>{{ prod.stock }}</td>
-        <td><button @click="$emit('on-borrar', prod.id)" class="btn-del">Eliminar</button></td>
+        <td>{{ props.prod.id }}</td>
+        <td>{{ props.prod.nombre }}</td>
+        <td>{{ props.prod.categoria }}</td>
+        <td>{{ props.prod.precio }}</td>
+        <td>{{ props.prod.stock }}</td>
+        <td><button @click="eliminar" class="btn-del">Eliminar</button></td>
     </tr>
-    
-
 </template>
 
 <style scoped>

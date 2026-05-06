@@ -10,6 +10,10 @@ const productosFiltrados = computed(() => {
         return props.productos;
     return props.productos.filter(p => p.categoria === filtro.value);
 });
+function eliminar(id){
+    console.log("Envia a App por funcion.");
+    emit('on-eliminar', id);
+}
 </script>
 
 <template>
@@ -38,7 +42,7 @@ const productosFiltrados = computed(() => {
             </thead>
             <tbody>
                 <ProductItem v-for="prod in productosFiltrados" :key="prod.id" :prod="prod"
-                    @on-borrar="id => emit('on-eliminar', id)" />
+                    @on-borrar="eliminar" />
             </tbody>
 
         </table>
