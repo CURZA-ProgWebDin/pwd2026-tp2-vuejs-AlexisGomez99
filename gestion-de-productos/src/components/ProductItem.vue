@@ -22,8 +22,9 @@ function eliminar(){
 <style scoped>
 td{
     border: 1px solid rgb(156, 10, 156);
-    padding: 10px;
+    padding: 5px;
     text-align: center;
+    word-wrap: break-word;
 }
 .btn-del {
     background: #ff4d4d;

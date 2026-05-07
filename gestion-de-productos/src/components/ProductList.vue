@@ -10,52 +10,60 @@ const productosFiltrados = computed(() => {
         return props.productos;
     return props.productos.filter(p => p.categoria === filtro.value);
 });
-function eliminar(id){
+function eliminar(id) {
     console.log("Envia a App por funcion.");
     emit('on-eliminar', id);
 }
 </script>
 
 <template>
-    <div class="list-container">
-        <label>Filtrar por: </label>
-        <select v-model="filtro">
-            <option value="Todos">Todos</option>
-            <option value="Ropa">Ropa</option>
-            <option value="Electrónica">Electrónica</option>
-            <option value="Hogar">Hogar</option>
-            <option value="Deportes">Deportes</option>
-            <option value="Arte">Arte</option>
-        </select>
-    </div>
-    <div v-if="productosFiltrados.length > 0">
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>NOMBRE</th>
-                    <th>CATEGORIA</th>
-                    <th>PRECIO</th>
-                    <th>STOCK</th>
-                    <th>ACCION</th>
-                </tr>
-            </thead>
-            <tbody>
-                <ProductItem v-for="prod in productosFiltrados" :key="prod.id" :prod="prod"
-                    @on-borrar="eliminar" />
-            </tbody>
+    <div class="container">
+        <div class="list-container">
+            <label>Filtrar por: </label>
+            <select v-model="filtro">
+                <option value="Todos">Todos</option>
+                <option value="Ropa">Ropa</option>
+                <option value="Electrónica">Electrónica</option>
+                <option value="Hogar">Hogar</option>
+                <option value="Deportes">Deportes</option>
+                <option value="Arte">Arte</option>
+            </select>
+        </div>
+        <div v-if="productosFiltrados.length > 0">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>NOMBRE</th>
+                        <th>CATEGORIA</th>
+                        <th>PRECIO</th>
+                        <th>STOCK</th>
+                        <th>ACCION</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ProductItem v-for="prod in productosFiltrados" :key="prod.id" :prod="prod" @on-borrar="eliminar" />
+                </tbody>
 
-        </table>
+            </table>
+        </div>
+        <p v-else>No hay productos cargados.</p>
     </div>
-    <p v-else>No hay productos cargados.</p>
 </template>
 
 <style scoped>
+.container{
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    margin-bottom: 3%;
+}
 .list-container {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
     text-align: center;
+    align-items: center;
 }
 
 select {
@@ -63,23 +71,27 @@ select {
     background-color: #f0f0f0;
     border: 1px solid #ccc;
     border-radius: 8px;
-    width: 400px;
+    width: 300px;
     padding: 7px;
     font-size: 13px;
     cursor: pointer;
 }
-
+option{
+    text-align: center;
+}
 table {
     margin-top: 30px;
     border: 3px solid;
     border-color: rgb(156, 10, 156);
     border-collapse: collapse;
+    table-layout: fixed;
     width: 100%;
 }
 
 th {
     border: 1px solid rgb(156, 10, 156);
-    padding: 50px;
-    text-align: left;
+    padding: 15px;
+    text-align: center;
+    word-wrap: break-word;
 }
 </style>

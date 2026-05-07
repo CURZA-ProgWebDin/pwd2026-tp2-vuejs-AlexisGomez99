@@ -57,16 +57,11 @@ function manejarEnvio() {
     align-items: center;
     display: flex;
     flex-direction: column;
-    margin-top: 5%;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 50px;
-    height: 100px;
+    margin-bottom: 2%;
 }
 
 .base-input {
     display: flex;
-    padding: 10px;
     flex-direction: column;
     text-align: center;
 }
@@ -74,15 +69,17 @@ function manejarEnvio() {
 label {
     margin-top: 10px;
 }
-
+option{
+    text-align: center;
+}
 select {
     margin-top: 5px;
     appearance: none;
-    text-align: center;
     background-color: #f0f0f0;
     border: 1px solid #ccc;
     border-radius: 8px;
-    padding: 5px 60px;
+    width: 300px;
+    padding: 7px;
     font-size: 13px;
     cursor: pointer;
 }

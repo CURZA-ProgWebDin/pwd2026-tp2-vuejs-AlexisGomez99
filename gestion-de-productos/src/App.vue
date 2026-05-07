@@ -2,7 +2,15 @@
 import { ref, computed } from 'vue';
 import ProductForm from './components/ProductForm.vue';
 import ProductList from './components/ProductList.vue';
+import AppLayout from './components/Layouts/AppLayout.vue';
+import HeaderComponent from './components/HeaderComponent.vue';
+import AsideComponent from './components/AsideComponent.vue';
+const components = {
+  Carga: ProductForm,
+  Inventario: ProductList
+};
 
+const vistaActual = ref('Carga');
 const productos = ref([])
 const id = ref(1)
 const cantidad_prod = computed(() => {
@@ -24,20 +32,34 @@ const eliminarProducto = (id) => {
 </script>
 
 <template>
-  <div class="container">
-    <div class="panel-carga">
-      <ProductForm @on-agregar="agregarProducto" />
-      <div class="resumen">
-        <p>Cantidad de productos {{ cantidad_prod }}</p>
-        <p>Valor del inventario ${{ valor_inventario }}</p>
+  <AppLayout>
+    <template #header>
+      <HeaderComponent>
+        <div class="resumen">
+          <p>Cantidad de productos {{ cantidad_prod }}</p>
+          <p>Valor del inventario ${{ valor_inventario }}</p>
+        </div>
+      </HeaderComponent>
+    </template>
+    <template #menu_lateral>
+      <AsideComponent>
+        <div class="menu"> <!-- Esto no se si esta bien que quede directamente en App o si hay alguna forma de hacerlo en AsideComponent -->
+          <nav class="nav-interna">
+            <button @click="vistaActual = 'Carga'">Nueva Carga</button>
+            <button @click="vistaActual = 'Inventario'">Ver Lista</button>
+          </nav>
+        </div>
+      </AsideComponent>
+    </template>
+    <template #main>
+      <div class="container">
+        <keep-alive>
+          <component :is="components[vistaActual]" :productos="productos" @on-agregar="agregarProducto"
+            @on-eliminar="eliminarProducto" />
+        </keep-alive>
       </div>
-    </div>
-    <div class="panel-productos">
-      <ProductList :productos="productos" @on-eliminar="eliminarProducto" />
-    </div>
-  </div>
-
-
+    </template>
+  </AppLayout>
 </template>
 <style>
 html,
@@ -46,48 +68,25 @@ body {
   padding: 0;
   width: 100%;
   height: 100%;
-  background-color: rgb(27, 1, 27);
+  background-color: rgb(26, 1, 31);
 }
 
 .container {
   display: flex;
+  flex-direction: column;
+  text-align: center;
   color: white;
 }
-
-.panel-productos {
-  border: solid rgb(156, 10, 156);
-  background-color: rgb(49, 2, 49);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 5%;
-  margin-left: 7%;
-  width: 55%;
-  height: 80vh;
-  font-family: sans-serif;
+.nav-interna{
+  margin-bottom: 2%;
 }
-
-.panel-carga {
-  border: solid rgb(156, 10, 156);
-  background-color: rgb(49, 2, 49);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 5%;
-  margin-left: 70px;
-  width: 30%;
-  font-family: sans-serif;
-}
-.resumen{
-  margin-top: auto;
-  border-top: solid rgb(156, 10, 156);
-  text-align: center;
-  width: 100%;
-  box-sizing: border-box;
-  padding: 20px 0;
-}
-p{
-  margin-top: auto;
-  padding-top: 5%;
+button {
+  margin-top: 10px;
+  background: #7a0791;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
 }
 </style>
